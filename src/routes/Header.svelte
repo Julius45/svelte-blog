@@ -1,7 +1,8 @@
 
 <header>
-    <a href="/" >
-        <h1>My Blog</h1> 
+    <a href="/" ><h1>My Blog</h1>  </a>
+    <a href="/contact" > Contact </a>
+        
 </header>
 
 <style>

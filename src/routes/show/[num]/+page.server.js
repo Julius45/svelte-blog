@@ -1,14 +1,26 @@
+
+
 /** @type {import('./$types').PageServerLoad} */
+
+import {error, redirect} from '@sveltejs/kit';
 export async function load({ fetch, params, setHeaders, locals }) {
-    console.log('locals', locals);
+    console.log( locals.user);
+    if (!locals?.user?.id) {
+        throw redirect(307, '/');
+    }
     //const parent_data = await parent();
     //console.log('parent data', parent_data);
 
     setHeaders({
-        'Cache-Control': 'max-age=3600', // 1 hour. For caching on our server. Response headers.
+        'Cache-Control': 'max-age=3600', // 1 hour. Response headers.
     }); // set response headers
     const res = await fetch(`https://syntax.fm/api/shows/${params.num}`);
     const data = await res.json();
+    if (data.message) {
+        throw error(404, {
+            message: data.message,
+        })
+    }
 
     return {
         episode: data,
