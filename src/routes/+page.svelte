@@ -7,6 +7,9 @@
     import '$db/start.js';
     export let data;
 
+    import {navigating, page, updated, getStores} from '$app/stores';
+
+    $: console.log($navigating, $page);
     $: ({latest_episode} = data)
 </script>
 

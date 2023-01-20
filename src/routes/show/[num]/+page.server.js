@@ -1,6 +1,10 @@
 
 
 /** @type {import('./$types').PageServerLoad} */
+import {env} from '$env/dynamic/private';
+console.log('env',env);
+import { LUT_API } from '$env/static/private';
+console.log('LUT_API',LUT_API);
 
 import {error, redirect} from '@sveltejs/kit';
 export async function load({ fetch, params, setHeaders, locals }) {
